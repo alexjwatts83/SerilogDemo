@@ -21,6 +21,15 @@ namespace SerilogDemo.WebApp.Pages
         public void OnGet()
         {
             _logger.LogInformation("Hello World");
+            try
+            {
+                _logger.LogInformation("Hello Again");
+                throw new Exception("Tis but a mere fail");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Exception lols");
+            }
         }
     }
 }
