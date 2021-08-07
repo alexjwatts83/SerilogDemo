@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -15,13 +16,16 @@ namespace SerilogDemo.WebApp
     {
         public static void Main(string[] args)
         {
-            var configuiration = new ConfigurationBuilder()
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
                 .Build();
+
 
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom
-                .Configuration(configuiration)
+                .Configuration(configuration)
                 .CreateLogger();
 
             try
