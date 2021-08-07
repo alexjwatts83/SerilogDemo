@@ -19,7 +19,7 @@ namespace SerilogDemo.WebApp.Pages
 
         public void OnGet()
         {
-
+            _logger.LogInformation("Hello World");
         }
     }
 }
