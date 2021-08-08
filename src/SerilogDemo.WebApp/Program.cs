@@ -31,6 +31,7 @@ namespace SerilogDemo.WebApp
             try
             {
                 Log.Information("Applicatin Starting Up");
+
                 var host = CreateHostBuilder(args).Build();
 
                 host.Run();
